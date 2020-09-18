@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Alarm</title>
+	<style>
+		body{
+			
+		}
+		.frame{
+			width:500px;
+			height:120px;
+			margin:auto;
+			margin-top:200px;
+		
+			background: green;
+		}
+		#date{
+			
+			color:white;
+			text-align: center;
+			font-size: 40px;
+		}
+		#alarm{
+			color:white;
+			
+			text-align: center;
+			font-size: 60px;
+		}
+	</style>
+</head>
+<body>
+	<div class="frame">
+		<div id="date"  onload  = "showTime()"></div>
+		<div id="alarm" onload = "showTime()"></div>
+	</div>
+	<script type="text/javascript">
+		function showTime(){
+			var date 	= new Date(),
+				hours  	= date.getHours(),
+				minutes = date.getMinutes(),
+				seconds = date.getSeconds(),
+				days    = date.getDate(),
+				months  = date.getMonth(),
+				years	= date.getFullYear()
+				session = "AM";	
+					if(hours<10){
+						hours = "0"+ hours;
+					}
+					if(hours>=10){
+						hours = hours;
+					}
+					if(minutes<10){
+						minutes = "0"+ minutes;
+					}
+					if(minutes>=10){
+						minutes = minutes;
+					}
+					if(seconds<10){
+						seconds = "0" + seconds;
+					}
+					if(seconds>=10){
+						seconds = seconds;
+					}
+					if(hours > 12){
+						session = "PM";
+					}
+					switch(months){
+						case 0:
+						months = "January";
+						break;
+						case 1:
+						months = "February";
+						break;
+						case 2:
+						months = "Martch";
+						break;
+						case 3:
+						months = "April";
+						break;
+						case 4:
+						months = "May";
+						break;
+						case 5:
+						months = "June";
+						break;
+						case 6:
+						months = "July";
+						break;
+						case 7:
+						months = "August";
+						break;
+						case 8:
+						months = "September";
+						break;
+						case 9:
+						months = "October";
+						break;
+						case 10:
+						months = "November";
+						break;
+						case 11:
+						months = "December";
+						break;
+					}
+					document.getElementById("date").innerHTML = months+ " "+ days+" "+years;
+					// months+ " "+ days+" "+years+"<br>"
+					document.getElementById("alarm").innerHTML = 
+					 "<span>"
+						+hours +":"+ minutes +":"+ seconds +" "+  session;
+					+"<span>";
+					setTimeout(showTime,1000);
+		}
+		showTime();
+	</script>
+</body>
+</html>
