@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Watch</title>
+	<style>
+		body{
+
+			background: green;
+		}
+		.watch{
+			color:white;
+			text-align: center;
+		}
+		.watch h1{
+			margin-top:100px;
+			text-align: center;
+			color:white;
+		}
+		.watch div{
+			font-size: 30px;
+			margin-bottom: 20px;
+		}
+		.watch button{
+			width:120px;
+			height:50px;
+			outline:none;
+			color:white;
+			background: none;
+			border:1px solid white;
+			border-radius: 3px;
+			font-size: 30px;
+		}
+		button:hover{
+			background: white;
+			color:green;
+		}
+		.watch #btn-stop{
+			margin-left: 15px;
+			margin-right: 15px;
+		}
+	</style>
+</head>
+<body>
+	<div class="watch">
+		<h1>Javascript Watch</h1>
+		<!-- <p>
+			<span id = "days">00</span>:
+			<span id = "hours">00</span>:
+			<span id = "minutes">00</span>:
+			<span id = "seconds">00</span>
+		</p> -->
+		<div 	id = "time">00:00:00:00</div>
+		<button id = "btn-start">Start</button>
+		<button id = "btn-stop">Stop</button>
+		<button id = "btn-reset" >Reset</button>
+	</div>
+
+
+
+	<script type="text/javascript">
+		window.onload = function()
+		{
+			var seconds = 0, minutes = 0, hours= 0, days = 0;
+			// var setSeconds = document.getElementById("seconds");
+			// var setMinutes = document.getElementById("minutes");
+			// var setHours = document.getElementById("hours");
+			// var setDays = document.getElementById("days");
+			var time = document.getElementById("time");
+			var buttonStart = document.getElementById("btn-start");
+			var buttonStop = document.getElementById("btn-stop");
+			var buttonReset = document.getElementById("btn-reset");
+			var interval;
+
+			buttonStart.onclick = function(){
+				interval = setInterval(RunningTime,1000);
+				button.disabled = true;
+
+			}
+			buttonStop.onclick = function(){
+				clearInterval(interval);
+			}
+			buttonReset.onclick = function(){
+				interval = clearInterval(interval);
+				seconds = 0;
+				minutes = 0;
+				hours 	= 0;
+				days 	= 0;
+				time.innerHTML = "00:00:00:00";
+			}
+
+
+			function RunningTime(){
+				seconds ++;
+				if(seconds == 60){
+					seconds  = 0;
+					minutes++;
+				}
+				if(minutes  == 60){
+					minutes = 0;
+					hours++;
+				}
+				if(hours == 24){
+					hours = 0;
+					days++;
+				}
+				ShowTime();
+			}
+			
+			
+			function ShowTime(){
+				var setSeconds,setMinutes,setHours,setDays;
+				if(seconds<10){
+					setSeconds = "0"+ seconds;
+				}
+				if(seconds>=10){
+					setSeconds = seconds;
+				}
+
+				if(minutes<10){
+					setMinutes = "0"+ minutes;
+				}
+				if(minutes>=10){
+					setMinutes = minutes;
+				}
+
+				if(hours<10){
+					setHours = "0"+ hours;
+				}
+				if(hours>=10){
+					setHours = hours;
+				}
+
+				if(days<10){
+					setDays = "0"+ days;
+				}
+				if(days>=10){
+					setDays = days;
+				}
+
+				time.innerHTML = setDays +":"+ setHours +":"+ setMinutes +":"+ setSeconds;	
+			}
+		}	
+	</script>
+</body>
+</html>
